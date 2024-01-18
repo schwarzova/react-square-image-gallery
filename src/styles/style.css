@@ -1,0 +1,104 @@
+/* /////////////////////////////////////////////////////////////// GALLERY /////////////////////////////////////////////////////////////// */
+
+.square-image-gallery {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.dark-square-image-gallery {
+  background-color: #222;
+}
+
+.square-image-gallery-image {
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  transition: transform 0.4s;
+  cursor: zoom-in;
+}
+
+.square-image-gallery-image:hover {
+  transform: scale(1.01);
+}
+
+/* /////////////////////////////////////////////////////////////// IMAGE DETAIL /////////////////////////////////////////////////////////////// */
+
+.square-image-gallery-detail {
+  background-color: #fff;
+  position: fixed;
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark-square-image-gallery-detail {
+  background-color: #222;
+  color: #ccc;
+}
+
+.square-image-gallery-detail button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.square-image-gallery-detail button:hover {
+  opacity: 0.8;
+}
+
+.square-image-gallery-detail button:focus {
+  outline: none;
+}
+
+.dark-square-image-gallery-detail button {
+  color: #ccc;
+}
+
+.square-image-gallery-detail svg {
+  height: 14px;
+  width: 14px;
+}
+
+.dark-square-image-gallery-detail svg {
+  fill: #ccc;
+}
+
+.square-image-gallery-detail-top {
+  height: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
+.square-image-gallery-detail-image {
+  position: relative;
+  height: 90%;
+  object-fit: contain;
+}
+
+.square-image-gallery-detail-bottom {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+
+/* /////////////////////////////////////////////////////////////// RESPONSIVE /////////////////////////////////////////////////////////////// */
+
+@media only screen and (max-width: 768px) {
+  .square-image-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
