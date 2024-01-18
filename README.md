@@ -2,6 +2,10 @@
 
 Simple square image gallery for React
 
+### Live Demo
+
+![demo](https://i.ibb.co/PhH8GPp/demo.gif)
+
 ## Features
 
 - Square image gallery
@@ -22,6 +26,7 @@ npm install react-square-image-gallery
 
 ```tsx
 import SquareImageGallery, { Image } from 'react-square-image-gallery';
+import 'react-square-image-gallery/src/styles/style.css';
 
 const images: Image[] = [
   {
