@@ -9,6 +9,7 @@ type Props = {
   customPrev?: React.ReactNode;
   dark?: boolean;
   image: Image;
+  imageIndex: number;
   images: Image[];
   showTitles?: boolean;
   onDetailClose: () => void;
@@ -16,9 +17,7 @@ type Props = {
 
 function ImageDetail(props: Props) {
   const [image, setImage] = useState(props.image);
-  const [imageIndex, setImageIndex] = useState(
-    props.images.findIndex(i => i.imageTitle === image.imageTitle)
-  );
+  const [imageIndex, setImageIndex] = useState(props.imageIndex);
 
   const imagesCount = props.images.length;
 

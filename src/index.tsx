@@ -63,14 +63,17 @@ function SquareImageGallery({
   ...props
 }: SquareImageGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<Image>();
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>();
 
-  function handleImageDetailOpen(image: Image) {
+  function handleImageDetailOpen(image: Image, index: number) {
     setSelectedImage(image);
+    setSelectedImageIndex(index);
     document.body.style.overflow = 'hidden';
   }
 
   function handleImageDetailClose() {
     setSelectedImage(undefined);
+    setSelectedImageIndex(undefined);
     document.body.style.overflow = 'auto';
   }
 
@@ -82,13 +85,13 @@ function SquareImageGallery({
         }`}
         style={{ gap: imagesGap }}
       >
-        {props.images.map(i => (
+        {props.images.map((image, index) => (
           <img
             className="square-image-gallery-image"
-            src={i.imageSrc}
-            alt={i.imageAlt ? i.imageAlt : i.imageTitle}
+            src={image.imageSrc}
+            alt={image.imageAlt ? image.imageAlt : image.imageTitle}
             loading="lazy"
-            onClick={() => handleImageDetailOpen(i)}
+            onClick={() => handleImageDetailOpen(image, index)}
           />
         ))}
       </div>
@@ -99,6 +102,7 @@ function SquareImageGallery({
           customNext={props.customNext}
           customPrev={props.customPrev}
           image={selectedImage}
+          imageIndex={selectedImageIndex || 0}
           images={props.images}
           showTitles={showTitles}
           onDetailClose={handleImageDetailClose}
