@@ -18,12 +18,39 @@ React Image Gallery requires **React 16.0.0 or later.**
 npm install react-square-image-gallery
 ```
 
+## Quick Start
+
+```tsx
+import { SquareImageGallery, Image } from 'react-square-image-gallery';
+
+const images: Image[] = [
+  {
+    imageSrc: 'https://picsum.photos/id/659/700/700',
+    imageTitle: '',
+  },
+  {
+    imageSrc: 'https://picsum.photos/id/433/1000/1000',
+    imageTitle: '',
+  },
+  {
+    imageSrc: 'https://picsum.photos/id/582/1000/1300',
+    imageTitle: '',
+  },
+  {
+    imageSrc: 'https://picsum.photos/id/593/1800/1300',
+    imageTitle: '',
+  },
+];
+
+<SquareImageGallery images={images} />;
+```
+
 ## Props
 
 | Name         | Type                  | Default Value | Description                                               |
 | ------------ | --------------------- | ------------- | --------------------------------------------------------- |
 | images       | `Image[]` (see below) |               | Required. Images displayed in gallery                     |
-| imagesGap?   | `string``             | "0.5rem"      | Optional. Gap between images in gallery grid              |
+| imagesGap?   | `string`              | "0.5rem"      | Optional. Gap between images in gallery grid              |
 | showTitles?  | `boolean`             | false         | Optional. Show image's titles in image detail             |
 | dark?        | `boolean`             | false         | Optional. Dark mode                                       |
 | customPrev?  | `React.ReactNode`     |               | Optional. Custom element for prev button in image detail  |
