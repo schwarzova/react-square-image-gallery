@@ -9,7 +9,7 @@ Simple square image gallery for React
 
 ### Live Demo
 
-![demo](https://i.ibb.co/60ssBPg/demo-square-gallery.gif)
+![demo](https://i.ibb.co/6yGMN0Q/demos.gif)
 
 ## Features
 
