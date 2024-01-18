@@ -21,7 +21,7 @@ npm install react-square-image-gallery
 ## Quick Start
 
 ```tsx
-import { SquareImageGallery, Image } from 'react-square-image-gallery';
+import SquareImageGallery, { Image } from 'react-square-image-gallery';
 
 const images: Image[] = [
   {
