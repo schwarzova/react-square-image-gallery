@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:schwarzova/react-square-image-gallery"
+    "url": "https://github.com/schwarzova/react-square-image-gallery"
   },
   "typings": "dist/index.d.ts",
   "files": [
@@ -41,6 +41,15 @@
   },
   "name": "react-square-image-gallery",
   "author": "Schwarzová, Tereza",
+  "homepage": "https://github.com/schwarzova/react-square-image-gallery",
+  "keywords": [
+    "react",
+    "typescript",
+    "react gallery",
+    "image gallery",
+    "square gallery",
+    "gallery"
+  ],
   "module": "dist/react-square-image-gallery.esm.js",
   "size-limit": [
     {
