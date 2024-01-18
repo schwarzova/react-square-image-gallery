@@ -26,19 +26,19 @@ import { SquareImageGallery, Image } from 'react-square-image-gallery';
 const images: Image[] = [
   {
     imageSrc: 'https://picsum.photos/id/659/700/700',
-    imageTitle: '',
+    imageTitle: 'Husky',
   },
   {
     imageSrc: 'https://picsum.photos/id/433/1000/1000',
-    imageTitle: '',
+    imageTitle: 'Bear',
   },
   {
     imageSrc: 'https://picsum.photos/id/582/1000/1300',
-    imageTitle: '',
+    imageTitle: 'Fox',
   },
   {
     imageSrc: 'https://picsum.photos/id/593/1800/1300',
-    imageTitle: '',
+    imageTitle: 'Tiger',
   },
 ];
 
