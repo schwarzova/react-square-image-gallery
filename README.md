@@ -1,13 +1,14 @@
 # React square image gallery
 
 [![npm version](https://badge.fury.io/js/react-square-image-gallery.svg)](https://badge.fury.io/js/react-square-image-gallery)
-[![gzip size](https://badgen.net/bundlephobia/minzip/react-square-image-gallery)](https://bundlephobia.com/result?p=react-square-image-gallery)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
 Simple square image gallery for React
 
 ### Live Demo
+
+[Demo `react-square-image-gallery`](https://codesandbox.io/p/sandbox/elated-rgb-fv6y73)
 
 ![demo](https://github.com/schwarzova/react-square-image-gallery/blob/master/demo.gif?raw=true)
 
