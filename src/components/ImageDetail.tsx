@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Image } from '../index';
 import Arrow from './Arrow';
 import Cross from './Cross';
@@ -8,7 +8,6 @@ type Props = {
   customNext?: React.ReactNode;
   customPrev?: React.ReactNode;
   dark?: boolean;
-  image: Image;
   imageIndex: number;
   images: Image[];
   showTitles?: boolean;
@@ -16,53 +15,43 @@ type Props = {
 };
 
 function ImageDetail(props: Props) {
-  const [image, setImage] = useState(props.image);
   const [imageIndex, setImageIndex] = useState(props.imageIndex);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
+  const image = props.images[imageIndex];
   const imagesCount = props.images.length;
 
-  function handleLeft() {
-    if (imageIndex === 0) {
-      setImageIndex(imagesCount - 1);
-      setImage(props.images[imagesCount - 1]);
-      return;
+  const handleLeft = useCallback(() => {
+    setImageIndex((i) => (i === 0 ? imagesCount - 1 : i - 1));
+  }, [imagesCount]);
+
+  const handleRight = useCallback(() => {
+    setImageIndex((i) => (i === imagesCount - 1 ? 0 : i + 1));
+  }, [imagesCount]);
+
+  useEffect(() => {
+    overlayRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      const key = e.key.toLowerCase();
+      if (key === 'arrowright') handleRight();
+      else if (key === 'arrowleft') handleLeft();
+      else if (key === 'escape') props.onDetailClose();
     }
 
-    setImageIndex(imageIndex - 1);
-    setImage(props.images[imageIndex - 1]);
-  }
-
-  function handleRight() {
-    if (imageIndex === imagesCount - 1) {
-      setImageIndex(0);
-      setImage(props.images[0]);
-      return;
-    }
-
-    setImageIndex(imageIndex + 1);
-    setImage(props.images[imageIndex + 1]);
-  }
-
-  function handleKeyDown(key: string) {
-    if (key === 'arrowright') {
-      handleRight();
-    }
-
-    if (key === 'arrowleft') {
-      handleLeft();
-    }
-
-    if (key === 'escape') {
-      props.onDetailClose();
-    }
-  }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleLeft, handleRight, props.onDetailClose]);
 
   return (
     <div
+      ref={overlayRef}
+      tabIndex={-1}
       className={`${
         props.dark ? 'dark-square-image-gallery-detail' : ''
       } square-image-gallery-detail`}
-      onKeyDown={e => handleKeyDown(e.key.toLocaleLowerCase())}
     >
       <div className="square-image-gallery-detail-top">
         <div></div>
@@ -75,8 +64,8 @@ function ImageDetail(props: Props) {
       </div>
       <img
         className="square-image-gallery-detail-image"
-        src={image.imageDetailSrc ? image.imageDetailSrc : image.imageSrc}
-        alt={image.imageAlt ? image.imageAlt : image.imageTitle}
+        src={image.imageDetailSrc ?? image.imageSrc}
+        alt={image.imageAlt ?? image.imageTitle}
         loading="lazy"
       />
       <div className="square-image-gallery-detail-bottom">
@@ -84,7 +73,7 @@ function ImageDetail(props: Props) {
           {props.customPrev ? props.customPrev : <Arrow prev />}
         </button>
         {props.showTitles && <span>{image.imageTitle}</span>}
-        <button onClick={handleRight} autoFocus>
+        <button onClick={handleRight}>
           {props.customNext ? props.customNext : <Arrow />}
         </button>
       </div>

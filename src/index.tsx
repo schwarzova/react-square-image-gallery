@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import './styles/style.css';
 import ImageDetail from './components/ImageDetail';
@@ -62,19 +62,18 @@ function SquareImageGallery({
   imagesGap = '0.5rem',
   ...props
 }: SquareImageGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState<Image>();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>();
+  const prevOverflow = useRef<string>('');
 
-  function handleImageDetailOpen(image: Image, index: number) {
-    setSelectedImage(image);
+  function handleImageDetailOpen(_image: Image, index: number) {
     setSelectedImageIndex(index);
+    prevOverflow.current = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
   }
 
   function handleImageDetailClose() {
-    setSelectedImage(undefined);
     setSelectedImageIndex(undefined);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = prevOverflow.current;
   }
 
   return (
@@ -87,22 +86,22 @@ function SquareImageGallery({
       >
         {props.images.map((image, index) => (
           <img
+            key={image.imageSrc}
             className="square-image-gallery-image"
             src={image.imageSrc}
-            alt={image.imageAlt ? image.imageAlt : image.imageTitle}
+            alt={image.imageAlt ?? image.imageTitle}
             loading="lazy"
             onClick={() => handleImageDetailOpen(image, index)}
           />
         ))}
       </div>
-      {selectedImage && (
+      {selectedImageIndex !== undefined && (
         <ImageDetail
           dark={dark}
           customClose={props.customClose}
           customNext={props.customNext}
           customPrev={props.customPrev}
-          image={selectedImage}
-          imageIndex={selectedImageIndex || 0}
+          imageIndex={selectedImageIndex}
           images={props.images}
           showTitles={showTitles}
           onDetailClose={handleImageDetailClose}
